@@ -11,6 +11,6 @@ if (!isset($argv[1])) {
 
 $arabicNumber = $argv[1];
 
-echo convert($arabicNumber);
+echo Converter::convert($arabicNumber);
 
 exit(0);

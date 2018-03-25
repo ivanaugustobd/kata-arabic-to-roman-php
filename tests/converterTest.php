@@ -1,8 +1,9 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use ArabicToRoman\Converter;
 
-class converterTest extends TestCase
+class ConverterTest extends TestCase
 {
     //
 }
