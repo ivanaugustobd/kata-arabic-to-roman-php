@@ -1,0 +1,10 @@
+{
+    "name": "ivanaugustobd/kata-arabic-to-roman-php",
+    "authors": [
+        {
+            "name": "Ivan Augusto",
+            "email": "ivanaugustobd@gmail.com"
+        }
+    ],
+    "require": {}
+}
