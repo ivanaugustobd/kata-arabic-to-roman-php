@@ -6,5 +6,12 @@
             "email": "ivanaugustobd@gmail.com"
         }
     ],
-    "require": {}
+    "autoload": {
+        "files": [
+            "src/converter.php"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    }
 }
