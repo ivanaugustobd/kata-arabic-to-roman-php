@@ -10,8 +10,10 @@ class Converter
      * @param int $arabicNumber Arabic number to be converted
      * @return string Roman algorism
      */
-    public static function convert(int $arabicNumber)
+    public static function convert(int $arabicNumber) : string
     {
-        //
+        if ($arabicNumber === 0) {
+            return '';
+        }
     }
 }
