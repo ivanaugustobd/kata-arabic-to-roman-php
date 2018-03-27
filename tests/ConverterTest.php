@@ -7,9 +7,7 @@ class ConverterTest extends TestCase
 {
     public function testZero()
     {
-        $converter = new Converter(0);
-
-        $this->assertEquals('', $converter->convert());
+        $this->assertEquals('', (new Converter(0))->convert());
     }
 
     /**
@@ -19,7 +17,7 @@ class ConverterTest extends TestCase
     {
         $converter = new Converter($arabic);
 
-        $this->assertEquals($roman, $converter->convert());
+        $this->assertEquals($roman, (new Converter($arabic))->convert());
     }
 
     /**
@@ -29,7 +27,7 @@ class ConverterTest extends TestCase
     {
         $converter = new Converter($arabic);
 
-        $this->assertEquals($roman, $converter->convert());
+        $this->assertEquals($roman, (new Converter($arabic))->convert());
     }
 
     /**
@@ -39,7 +37,7 @@ class ConverterTest extends TestCase
     {
         $converter = new Converter($arabic);
 
-        $this->assertEquals($roman, $converter->convert());
+        $this->assertEquals($roman, (new Converter($arabic))->convert());
     }
 
     /**
@@ -49,7 +47,7 @@ class ConverterTest extends TestCase
     {
         $converter = new Converter($arabic);
 
-        $this->assertEquals($roman, $converter->convert());
+        $this->assertEquals($roman, (new Converter($arabic))->convert());
     }
 
     /**
@@ -59,7 +57,7 @@ class ConverterTest extends TestCase
     {
         $converter = new Converter($arabic);
 
-        $this->assertEquals($roman, $converter->convert());
+        $this->assertEquals($roman, (new Converter($arabic))->convert());
     }
 
     public function oneAlgorismNumbers()
