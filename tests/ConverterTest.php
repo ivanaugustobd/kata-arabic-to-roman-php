@@ -7,7 +7,9 @@ class ConverterTest extends TestCase
 {
     public function testZero()
     {
-        $this->assertEquals('', Converter::convert(0));
+        $converter = new Converter(0);
+
+        $this->assertEquals('', $converter->convert());
     }
 
     /**
@@ -15,7 +17,9 @@ class ConverterTest extends TestCase
      */
     public function testOneAlgorismNumber($arabic, $roman)
     {
-        $this->assertEquals($roman, Converter::convert($arabic));
+        $converter = new Converter($arabic);
+
+        $this->assertEquals($roman, $converter->convert());
     }
 
     /**
@@ -23,7 +27,9 @@ class ConverterTest extends TestCase
      */
     public function testTwoAndThreeAlgorisms($arabic, $roman)
     {
-        $this->assertEquals($roman, Converter::convert($arabic));
+        $converter = new Converter($arabic);
+
+        $this->assertEquals($roman, $converter->convert());
     }
 
     /**
@@ -31,7 +37,9 @@ class ConverterTest extends TestCase
      */
     public function testNoSubtrationRequiredAlgorisms($arabic, $roman)
     {
-        $this->assertEquals($roman, Converter::convert($arabic));
+        $converter = new Converter($arabic);
+
+        $this->assertEquals($roman, $converter->convert());
     }
 
     public function oneAlgorismNumbers()

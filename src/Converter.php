@@ -4,6 +4,9 @@ namespace ArabicToRoman;
 
 class Converter
 {
+    private $arabic;
+    private $roman = '';
+
     const ALGORISMS_MAP = [
         1 => 'I',
         5 => 'V',
@@ -14,43 +17,44 @@ class Converter
         1000 => 'M',
     ];
 
+    public function __construct(int $arabic)
+    {
+        $this->arabic = $arabic;
+    }
+
     /**
      * Convert given arabic number into roman equivalent
      *
-     * @param int $arabic Arabic number to be converted
-     *
      * @return string Roman algorism
      */
-    public static function convert(int $arabic) : string
+    public function convert() : string
     {
-        if ($arabic === 0) {
+        if ($this->arabic === 0) {
             return '';
         }
 
         $map = self::ALGORISMS_MAP;
 
-        if (isset($map[$arabic])) {
-            return $map[$arabic];
+        if (isset($map[$this->arabic])) {
+            return $map[$this->arabic];
         }
 
-        $result = '';
-
-        while ($arabic > 0) {
+        while ($this->arabic > 0) {
             foreach (array_reverse($map, true) as $mapArabic => $mapRoman) {
-                $division = $arabic / $mapArabic;
+                $division = $this->arabic / $mapArabic;
 
                 if ($division >= 1) {
                     $repeat = (int) $division;
 
                     for ($i = 0; $i < $repeat; $i++) {
-                        $result .= $mapRoman;
+                        $this->roman .= $mapRoman;
                     }
 
-                    $arabic -= $repeat * $mapArabic;
+                    $this->arabic -= $repeat * $mapArabic;
                 }
             }
         }
 
-        return $result;
+        return $this->roman;
     }
 }
