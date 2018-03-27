@@ -34,6 +34,7 @@ class Converter
         }
 
         $map = self::ALGORISMS_MAP;
+        $romanLetters = array_values(self::ALGORISMS_MAP);
 
         if (isset($map[$this->arabic])) {
             return $map[$this->arabic];
@@ -43,15 +44,21 @@ class Converter
             foreach (array_reverse($map, true) as $mapArabic => $mapRoman) {
                 $division = $this->arabic / $mapArabic;
 
-                if ($division >= 1) {
-                    $repeat = (int) $division;
+                if ($division < 1) {
+                    continue;
+                }
 
+                $repeat = (int) $division;
+
+                if ($repeat === 4) {
+                    $this->roman .= $mapRoman . $romanLetters[array_search($mapRoman, $romanLetters) + 1];
+                } else {
                     for ($i = 0; $i < $repeat; $i++) {
                         $this->roman .= $mapRoman;
                     }
-
-                    $this->arabic -= $repeat * $mapArabic;
                 }
+
+                $this->arabic -= $repeat * $mapArabic;
             }
         }
 

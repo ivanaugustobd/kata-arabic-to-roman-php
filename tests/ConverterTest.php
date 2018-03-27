@@ -33,6 +33,16 @@ class ConverterTest extends TestCase
     }
 
     /**
+     * @dataProvider hasFourNumbers
+     */
+    public function testhasFourNumber($arabic, $roman)
+    {
+        $converter = new Converter($arabic);
+
+        $this->assertEquals($roman, $converter->convert());
+    }
+
+    /**
      * @dataProvider noSubtrationRequiredNumbers
      */
     public function testNoSubtrationRequiredAlgorisms($arabic, $roman)
@@ -79,6 +89,19 @@ class ConverterTest extends TestCase
             [1562, 'MDLXII'],
             [2378, 'MMCCCLXXVIII'],
             [3587, 'MMMDLXXXVII'],
+        ];
+    }
+
+    public function hasFourNumbers()
+    {
+        return [
+            [134, 'CXXXIV'],
+            [348, 'CCCXLVIII'],
+            [483, 'CDLXXXIII'],
+            [848, 'DCCCXLVIII'],
+            [1462, 'MCDLXII'],
+            [2474, 'MMCDLXXIV'],
+            [3444, 'MMMCDXLIV'],
         ];
     }
 }
