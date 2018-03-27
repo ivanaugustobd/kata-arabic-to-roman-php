@@ -1,7 +1,7 @@
 # Kata - Conversor of arabic numbers into roman algarisms (PHP/OO version)
 ## Installation
 ```sh
-git clone https://gitlab.com/ivanaugustobd/kata-arabic-to-roman-php.git; cd kata-arabic-to-roman-php; composer install
+git clone https://gitlab.com/ivanaugustobd/kata-arabic-to-roman-php.git && cd kata-arabic-to-roman-php && composer install
 ```
 ## Usage
 ```sh
