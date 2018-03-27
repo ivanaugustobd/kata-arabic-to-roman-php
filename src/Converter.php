@@ -33,21 +33,24 @@ class Converter
             return $map[$arabic];
         }
 
-        foreach (array_reverse($map, true) as $mapArabic => $mapRoman) {
-            $division = $arabic / $mapArabic;
+        $result = '';
 
-            if ($division > 1) {
-                $repeat = (int) $division;
-                $result = '';
+        while ($arabic > 0) {
+            foreach (array_reverse($map, true) as $mapArabic => $mapRoman) {
+                $division = $arabic / $mapArabic;
 
-                for ($i = 0; $i < $repeat; $i++) {
-                    $result .= $mapRoman;
+                if ($division >= 1) {
+                    $repeat = (int) $division;
+
+                    for ($i = 0; $i < $repeat; $i++) {
+                        $result .= $mapRoman;
+                    }
+
+                    $arabic -= $repeat * $mapArabic;
                 }
-
-                return $result;
             }
         }
 
-        return 'Whoops, some error has occurred! :P';
+        return $result;
     }
 }

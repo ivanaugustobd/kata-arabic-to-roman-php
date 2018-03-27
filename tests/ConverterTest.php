@@ -26,6 +26,14 @@ class ConverterTest extends TestCase
         $this->assertEquals($roman, Converter::convert($arabic));
     }
 
+    /**
+     * @dataProvider noSubtrationRequiredNumbers
+     */
+    public function testNoSubtrationRequiredAlgorisms($arabic, $roman)
+    {
+        $this->assertEquals($roman, Converter::convert($arabic));
+    }
+
     public function oneAlgorismNumbers()
     {
         return [
@@ -50,6 +58,19 @@ class ConverterTest extends TestCase
             [300, 'CCC'],
             [2000, 'MM'],
             [3000, 'MMM'],
+        ];
+    }
+
+    public function noSubtrationRequiredNumbers()
+    {
+        return [
+            [137, 'CXXXVII'],
+            [358, 'CCCLVIII'],
+            [783, 'DCCLXXXIII'],
+            [888, 'DCCCLXXXVIII'],
+            [1562, 'MDLXII'],
+            [2378, 'MMCCCLXXVIII'],
+            [3587, 'MMMDLXXXVII'],
         ];
     }
 }
