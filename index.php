@@ -1,7 +1,5 @@
 <?php
 
-use ArabicToRoman\Converter;
-
 require __DIR__ . '/vendor/autoload.php';
 
 if (!isset($argv[1])) {
@@ -11,6 +9,6 @@ if (!isset($argv[1])) {
 
 $arabicNumber = $argv[1];
 
-echo Converter::convert($arabicNumber);
+echo ArabicToRoman\Converter::convert($arabicNumber) . PHP_EOL;
 
 exit(0);

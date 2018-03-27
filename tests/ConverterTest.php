@@ -18,6 +18,14 @@ class ConverterTest extends TestCase
         $this->assertEquals($roman, Converter::convert($arabic));
     }
 
+    /**
+     * @dataProvider twoAndThreeAlgorismsNumbers
+     */
+    public function testTwoAndThreeAlgorisms($arabic, $roman)
+    {
+        $this->assertEquals($roman, Converter::convert($arabic));
+    }
+
     public function oneAlgorismNumbers()
     {
         return [
@@ -28,6 +36,20 @@ class ConverterTest extends TestCase
             [100, 'C'],
             [500, 'D'],
             [1000, 'M'],
+        ];
+    }
+
+    public function twoAndThreeAlgorismsNumbers()
+    {
+        return [
+            [2, 'II'],
+            [3, 'III'],
+            [20, 'XX'],
+            [30, 'XXX'],
+            [200, 'CC'],
+            [300, 'CCC'],
+            [2000, 'MM'],
+            [3000, 'MMM'],
         ];
     }
 }
