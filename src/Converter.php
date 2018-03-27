@@ -62,6 +62,10 @@ class Converter
             }
         }
 
+        $this->roman = str_replace('VIV', 'IX', $this->roman);
+        $this->roman = str_replace('LXL', 'XC', $this->roman);
+        $this->roman = str_replace('DCD', 'CM', $this->roman);
+
         return $this->roman;
     }
 }

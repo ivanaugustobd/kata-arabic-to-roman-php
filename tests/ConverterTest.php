@@ -33,9 +33,19 @@ class ConverterTest extends TestCase
     }
 
     /**
-     * @dataProvider hasFourNumbers
+     * @dataProvider hasNumberFour
      */
-    public function testhasFourNumber($arabic, $roman)
+    public function testNumberWithAlgarismFour($arabic, $roman)
+    {
+        $converter = new Converter($arabic);
+
+        $this->assertEquals($roman, $converter->convert());
+    }
+
+    /**
+     * @dataProvider hasNumberNine
+     */
+    public function testNumberWithAlgarismNine($arabic, $roman)
     {
         $converter = new Converter($arabic);
 
@@ -92,7 +102,7 @@ class ConverterTest extends TestCase
         ];
     }
 
-    public function hasFourNumbers()
+    public function hasNumberFour()
     {
         return [
             [134, 'CXXXIV'],
@@ -102,6 +112,29 @@ class ConverterTest extends TestCase
             [1462, 'MCDLXII'],
             [2474, 'MMCDLXXIV'],
             [3444, 'MMMCDXLIV'],
+        ];
+    }
+
+    public function hasNumberNine()
+    {
+        return [
+            [9, 'IX'],
+            [19, 'XIX'],
+            [29, 'XXIX'],
+            [39, 'XXXIX'],
+            [49, 'XLIX'],
+            [59, 'LIX'],
+            [69, 'LXIX'],
+            [79, 'LXXIX'],
+            [89, 'LXXXIX'],
+            [99, 'XCIX'],
+            [499, 'CDXCIX'],
+            [999, 'CMXCIX'],
+            [1499, 'MCDXCIX'],
+            [1999, 'MCMXCIX'],
+            [2499, 'MMCDXCIX'],
+            [2999, 'MMCMXCIX'],
+            [3999, 'MMMCMXCIX'],
         ];
     }
 }
