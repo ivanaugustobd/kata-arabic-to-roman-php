@@ -62,10 +62,15 @@ class Converter
             }
         }
 
+        $this->fixWeirdNines();
+
+        return $this->roman;
+    }
+
+    private function fixWeirdNines()
+    {
         $this->roman = str_replace('VIV', 'IX', $this->roman);
         $this->roman = str_replace('LXL', 'XC', $this->roman);
         $this->roman = str_replace('DCD', 'CM', $this->roman);
-
-        return $this->roman;
     }
 }
