@@ -8,8 +8,7 @@ if (!isset($argv[1])) {
 }
 
 $arabicNumber = $argv[1];
-$converter = new ArabicToRoman\Converter($arabicNumber);
 
-echo $converter->convert() . PHP_EOL;
+echo ArabicToRoman\Converter::convert($arabicNumber) . PHP_EOL;
 
 exit(0);

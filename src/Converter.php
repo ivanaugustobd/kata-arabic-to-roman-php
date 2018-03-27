@@ -4,45 +4,41 @@ namespace ArabicToRoman;
 
 class Converter
 {
-    private $arabic;
-    private $roman = '';
-
     const ALGORISMS_MAP = [
-        1 => 'I',
-        5 => 'V',
-        10 => 'X',
-        50 => 'L',
-        100 => 'C',
-        500 => 'D',
         1000 => 'M',
+        500 => 'D',
+        100 => 'C',
+        50 => 'L',
+        10 => 'X',
+        5 => 'V',
+        1 => 'I',
     ];
-
-    public function __construct(int $arabic)
-    {
-        $this->arabic = $arabic;
-    }
 
     /**
      * Convert given arabic number into roman equivalent
      *
+     * @param int $arabic Number to be
+     *
      * @return string Roman algorism
      */
-    public function convert() : string
+    public static function convert(int $arabic) : string
     {
-        if ($this->arabic === 0) {
+        if ($arabic === 0) {
             return '';
         }
 
         $map = self::ALGORISMS_MAP;
-        $romanLetters = array_values(self::ALGORISMS_MAP);
 
-        if (isset($map[$this->arabic])) {
-            return $map[$this->arabic];
+        if (isset($map[$arabic])) {
+            return $map[$arabic];
         }
 
-        while ($this->arabic > 0) {
+        $roman = '';
+        $romanLetters = array_values(self::ALGORISMS_MAP);
+
+        while ($arabic > 0) {
             foreach ($map as $mapArabic => $mapRoman) {
-                $division = $this->arabic / $mapArabic;
+                $division = $arabic / $mapArabic;
 
                 if ($division < 1) {
                     continue;
@@ -51,26 +47,21 @@ class Converter
                 $repeat = (int) $division;
 
                 if ($repeat === 4) {
-                    $this->roman .= $mapRoman . $romanLetters[array_search($mapRoman, $romanLetters) - 1];
+                    $roman .= $mapRoman . $romanLetters[array_search($mapRoman, $romanLetters) - 1];
                 } else {
                     for ($i = 0; $i < $repeat; $i++) {
-                        $this->roman .= $mapRoman;
+                        $roman .= $mapRoman;
                     }
                 }
 
-                $this->arabic -= $repeat * $mapArabic;
+                $arabic -= $repeat * $mapArabic;
             }
         }
 
-        $this->fixWeirdNines();
+        $roman = str_replace('VIV', 'IX', $roman);
+        $roman = str_replace('LXL', 'XC', $roman);
+        $roman = str_replace('DCD', 'CM', $roman);
 
-        return $this->roman;
-    }
-
-    private function fixWeirdNines()
-    {
-        $this->roman = str_replace('VIV', 'IX', $this->roman);
-        $this->roman = str_replace('LXL', 'XC', $this->roman);
-        $this->roman = str_replace('DCD', 'CM', $this->roman);
+        return $roman;
     }
 }
