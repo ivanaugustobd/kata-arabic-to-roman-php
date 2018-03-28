@@ -34,7 +34,7 @@ class Converter
         }
 
         $roman = '';
-        $romanLetters = array_values(self::ALGORISMS_MAP);
+        $romanLetters = array_values($map);
 
         while ($arabic > 0) {
             foreach ($map as $mapArabic => $mapRoman) {
@@ -45,16 +45,20 @@ class Converter
                 }
 
                 $repeat = (int) $division;
+                $unitsToDecrease = $repeat * $mapArabic;
 
                 if ($repeat === 4) {
                     $roman .= $mapRoman . $romanLetters[array_search($mapRoman, $romanLetters) - 1];
-                } else {
-                    for ($i = 0; $i < $repeat; $i++) {
-                        $roman .= $mapRoman;
-                    }
+                    $arabic -= $unitsToDecrease;
+
+                    continue;
                 }
 
-                $arabic -= $repeat * $mapArabic;
+                for ($i = 0; $i < $repeat; $i++) {
+                    $roman .= $mapRoman;
+                }
+
+                $arabic -= $unitsToDecrease;
             }
         }
 
