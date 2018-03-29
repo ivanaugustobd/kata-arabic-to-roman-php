@@ -5,12 +5,16 @@ use ArabicToRoman\Converter;
 
 class ConverterTest extends TestCase
 {
+    /**
+     * @covers ArabicToRoman\Converter::convert
+     */
     public function testZero()
     {
         $this->assertEquals('', Converter::convert(0));
     }
 
     /**
+     * @covers ArabicToRoman\Converter::convert
      * @dataProvider oneAlgorismNumbers
      */
     public function testOneAlgorismNumber($arabic, $roman)
@@ -20,6 +24,8 @@ class ConverterTest extends TestCase
 
     /**
      * @dataProvider twoAndThreeAlgorismsNumbers
+     * @covers ArabicToRoman\Converter::convert
+     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
      */
     public function testTwoAndThreeAlgorisms($arabic, $roman)
     {
@@ -27,6 +33,8 @@ class ConverterTest extends TestCase
     }
 
     /**
+     * @covers ArabicToRoman\Converter::convert
+     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
      * @dataProvider hasNumberFour
      */
     public function testNumberWithAlgarismFour($arabic, $roman)
@@ -35,6 +43,8 @@ class ConverterTest extends TestCase
     }
 
     /**
+     * @covers ArabicToRoman\Converter::convert
+     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
      * @dataProvider hasNumberNine
      */
     public function testNumberWithAlgarismNine($arabic, $roman)
@@ -43,6 +53,8 @@ class ConverterTest extends TestCase
     }
 
     /**
+     * @covers ArabicToRoman\Converter::convert
+     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
      * @dataProvider noSubtrationRequiredNumbers
      */
     public function testNoSubtrationRequiredAlgorisms($arabic, $roman)

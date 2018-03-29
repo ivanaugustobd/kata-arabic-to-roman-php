@@ -4,7 +4,7 @@ namespace ArabicToRoman;
 
 class Converter
 {
-    const ALGORISMS_MAP = [
+    const ALGARISMS_MAP = [
         1000 => 'M',
         500 => 'D',
         100 => 'C',
@@ -27,12 +27,18 @@ class Converter
             return '';
         }
 
-        $map = self::ALGORISMS_MAP;
+        $map = self::ALGARISMS_MAP;
 
         if (isset($map[$arabic])) {
             return $map[$arabic];
         }
 
+        return self::convertTrhoughDecomposition($arabic);
+    }
+
+    private static function convertTrhoughDecomposition(int $arabic)
+    {
+        $map = self::ALGARISMS_MAP;
         $roman = '';
         $romanLetters = array_values($map);
 
