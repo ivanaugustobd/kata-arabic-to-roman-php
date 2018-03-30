@@ -5,13 +5,13 @@ namespace ArabicToRoman;
 class Converter
 {
     const ALGORISMS_MAP = [
-        1000 => 'M',
-        500 => 'D',
-        100 => 'C',
-        50 => 'L',
-        10 => 'X',
-        5 => 'V',
         1 => 'I',
+        5 => 'V',
+        10 => 'X',
+        50 => 'L',
+        100 => 'C',
+        500 => 'D',
+        1000 => 'M',
     ];
 
     /**
@@ -45,34 +45,36 @@ class Converter
      */
     private static function convertThroughDecomposition(int $arabic)
     {
-        $map = self::ALGORISMS_MAP;
         $roman = '';
+        $map = self::ALGORISMS_MAP;
+        $algorimsCount = count($map);
+        $arabicNumbers = array_keys($map);
         $romanLetters = array_values($map);
 
-        while ($arabic > 0) {
-            foreach ($map as $mapArabic => $mapRoman) {
-                $division = $arabic / $mapArabic;
+        for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; --$i) {
+            $currentArabic = $arabicNumbers[$i];
+            $currentRoman = $romanLetters[$i];
+            $division = $arabic / $currentArabic;
 
-                if ($division < 1) {
-                    continue;
-                }
-
-                $repeat = (int) $division;
-                $unitsToDecrease = $repeat * $mapArabic;
-
-                if (4 === $repeat) {
-                    $roman .= $mapRoman.$romanLetters[array_search($mapRoman, $romanLetters) - 1];
-                    $arabic -= $unitsToDecrease;
-
-                    continue;
-                }
-
-                for ($i = 0; $i < $repeat; ++$i) {
-                    $roman .= $mapRoman;
-                }
-
-                $arabic -= $unitsToDecrease;
+            if ($division < 1) {
+                continue;
             }
+
+            $repeat = (int) $division;
+            $unitsToDecrease = $repeat * $currentArabic;
+
+            if (4 === $repeat) {
+                $roman .= $currentRoman.$romanLetters[array_search($currentRoman, $romanLetters) + 1];
+                $arabic -= $unitsToDecrease;
+
+                continue;
+            }
+
+            for ($j = 0; $j < $repeat; ++$j) {
+                $roman .= $currentRoman;
+            }
+
+            $arabic -= $unitsToDecrease;
         }
 
         $roman = str_replace('VIV', 'IX', $roman);
