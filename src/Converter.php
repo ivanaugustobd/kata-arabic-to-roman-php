@@ -61,13 +61,12 @@ class Converter
             }
 
             $repeat = (int) $division;
-            $unitsToDecrease = $repeat * $currentArabic;
 
             $roman .= $repeat === 4
                 ? $currentRoman.$romanLetters[$i + 1]
                 : implode(array_fill(0, $repeat, $currentRoman));
 
-            $arabic -= $unitsToDecrease;
+            $arabic -= $repeat * $currentArabic;
         }
 
         $roman = str_replace('VIV', 'IX', $roman);
