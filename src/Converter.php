@@ -43,7 +43,7 @@ class Converter
      *
      * @return string Roman algorism
      */
-    private static function convertThroughDecomposition(int $arabic)
+    private static function convertThroughDecomposition(int $arabic): string
     {
         $roman = '';
         $map = self::ALGORISMS_MAP;
@@ -51,7 +51,7 @@ class Converter
         $arabicNumbers = array_keys($map);
         $romanLetters = array_values($map);
 
-        for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; $i--) {
+        for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; --$i) {
             $currentArabic = $arabicNumbers[$i];
             $division = $arabic / $currentArabic;
 
@@ -62,7 +62,7 @@ class Converter
             $currentRoman = $romanLetters[$i];
             $repeat = (int) $division;
 
-            $roman .= $repeat === 4
+            $roman .= 4 === $repeat
                 ? $currentRoman.$romanLetters[$i + 1]
                 : implode(array_fill(0, $repeat, $currentRoman));
 
