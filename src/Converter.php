@@ -47,11 +47,11 @@ class Converter
     {
         $roman = '';
         $map = self::ALGORISMS_MAP;
-        $algorimsCount = count($map);
+        $algorismsCount = count($map);
         $arabicNumbers = array_keys($map);
         $romanLetters = array_values($map);
 
-        for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; --$i) {
+        for ($i = $algorismsCount - 1; $i >= 0 && $arabic > 0; --$i) {
             $currentArabic = $arabicNumbers[$i];
             $division = $arabic / $currentArabic;
 
