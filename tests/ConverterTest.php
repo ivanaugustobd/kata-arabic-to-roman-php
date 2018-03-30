@@ -6,7 +6,7 @@ use ArabicToRoman\Converter;
 class ConverterTest extends TestCase
 {
     /**
-     * @covers ArabicToRoman\Converter::convert
+     * @covers \ArabicToRoman\Converter::convert
      */
     public function testZero()
     {
@@ -14,7 +14,7 @@ class ConverterTest extends TestCase
     }
 
     /**
-     * @covers ArabicToRoman\Converter::convert
+     * @covers \ArabicToRoman\Converter::convert
      * @dataProvider oneAlgorismNumbers
      */
     public function testOneAlgorismNumber($arabic, $roman)
@@ -24,8 +24,8 @@ class ConverterTest extends TestCase
 
     /**
      * @dataProvider twoAndThreeAlgorismsNumbers
-     * @covers ArabicToRoman\Converter::convert
-     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
+     * @covers \ArabicToRoman\Converter::convert
+     * @covers \ArabicToRoman\Converter::convertThroughDecomposition
      */
     public function testTwoAndThreeAlgorisms($arabic, $roman)
     {
@@ -33,31 +33,31 @@ class ConverterTest extends TestCase
     }
 
     /**
-     * @covers ArabicToRoman\Converter::convert
-     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
+     * @covers \ArabicToRoman\Converter::convert
+     * @covers \ArabicToRoman\Converter::convertThroughDecomposition
      * @dataProvider hasNumberFour
      */
-    public function testNumberWithAlgarismFour($arabic, $roman)
+    public function testNumberWithAlgorismFour($arabic, $roman)
     {
         $this->assertEquals($roman, Converter::convert($arabic));
     }
 
     /**
-     * @covers ArabicToRoman\Converter::convert
-     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
+     * @covers \ArabicToRoman\Converter::convert
+     * @covers \ArabicToRoman\Converter::convertThroughDecomposition
      * @dataProvider hasNumberNine
      */
-    public function testNumberWithAlgarismNine($arabic, $roman)
+    public function testNumberWithAlgorismNine($arabic, $roman)
     {
         $this->assertEquals($roman, Converter::convert($arabic));
     }
 
     /**
-     * @covers ArabicToRoman\Converter::convert
-     * @covers ArabicToRoman\Converter::convertTrhoughDecomposition
-     * @dataProvider noSubtrationRequiredNumbers
+     * @covers \ArabicToRoman\Converter::convert
+     * @covers \ArabicToRoman\Converter::convertThroughDecomposition
+     * @dataProvider noSubtractionRequiredNumbers
      */
-    public function testNoSubtrationRequiredAlgorisms($arabic, $roman)
+    public function testNoSubtractionRequiredAlgorisms($arabic, $roman)
     {
         $this->assertEquals($roman, Converter::convert($arabic));
     }
@@ -89,7 +89,7 @@ class ConverterTest extends TestCase
         ];
     }
 
-    public function noSubtrationRequiredNumbers()
+    public function noSubtractionRequiredNumbers()
     {
         return [
             [137, 'CXXXVII'],
