@@ -64,7 +64,7 @@ class Converter
             $unitsToDecrease = $repeat * $currentArabic;
 
             if (4 === $repeat) {
-                $roman .= $currentRoman.$romanLetters[array_search($currentRoman, $romanLetters) + 1];
+                $roman .= $currentRoman.$romanLetters[$i + 1];
                 $arabic -= $unitsToDecrease;
 
                 continue;
