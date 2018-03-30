@@ -70,9 +70,7 @@ class Converter
                 continue;
             }
 
-            for ($j = 0; $j < $repeat; ++$j) {
-                $roman .= $currentRoman;
-            }
+            $roman .= self::repeatRomanLetter($currentRoman, $repeat);
 
             $arabic -= $unitsToDecrease;
         }
@@ -82,5 +80,24 @@ class Converter
         $roman = str_replace('DCD', 'CM', $roman);
 
         return $roman;
+    }
+
+    /**
+     * Repeat given letter n times.
+     *
+     * @param string $letter Letter to be repeated
+     * @param int    $times  Times to be repeated
+     *
+     * @return string Repeated letters string
+     */
+    private static function repeatRomanLetter($letter, $times)
+    {
+        $letters = '';
+
+        for ($i = 0; $i < $times; ++$i) {
+            $letters .= $letter;
+        }
+
+        return $letters;
     }
 }

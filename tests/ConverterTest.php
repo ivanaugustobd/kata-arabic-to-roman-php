@@ -26,6 +26,7 @@ class ConverterTest extends TestCase
      * @dataProvider twoAndThreeAlgorismsNumbers
      * @covers \ArabicToRoman\Converter::convert
      * @covers \ArabicToRoman\Converter::convertThroughDecomposition
+     * @covers \ArabicToRoman\Converter::repeatRomanLetter
      */
     public function testTwoAndThreeAlgorisms($arabic, $roman)
     {
@@ -35,6 +36,7 @@ class ConverterTest extends TestCase
     /**
      * @covers \ArabicToRoman\Converter::convert
      * @covers \ArabicToRoman\Converter::convertThroughDecomposition
+     * @covers \ArabicToRoman\Converter::repeatRomanLetter
      * @dataProvider hasNumberFour
      */
     public function testNumberWithAlgorismFour($arabic, $roman)
@@ -45,6 +47,7 @@ class ConverterTest extends TestCase
     /**
      * @covers \ArabicToRoman\Converter::convert
      * @covers \ArabicToRoman\Converter::convertThroughDecomposition
+     * @covers \ArabicToRoman\Converter::repeatRomanLetter
      * @dataProvider hasNumberNine
      */
     public function testNumberWithAlgorismNine($arabic, $roman)
@@ -55,6 +58,7 @@ class ConverterTest extends TestCase
     /**
      * @covers \ArabicToRoman\Converter::convert
      * @covers \ArabicToRoman\Converter::convertThroughDecomposition
+     * @covers \ArabicToRoman\Converter::repeatRomanLetter
      * @dataProvider noSubtractionRequiredNumbers
      */
     public function testNoSubtractionRequiredAlgorisms($arabic, $roman)
