@@ -53,13 +53,13 @@ class Converter
 
         for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; $i--) {
             $currentArabic = $arabicNumbers[$i];
-            $currentRoman = $romanLetters[$i];
             $division = $arabic / $currentArabic;
 
             if ($division < 1) {
                 continue;
             }
 
+            $currentRoman = $romanLetters[$i];
             $repeat = (int) $division;
 
             $roman .= $repeat === 4
