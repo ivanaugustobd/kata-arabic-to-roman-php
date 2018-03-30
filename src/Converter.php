@@ -4,7 +4,7 @@ namespace ArabicToRoman;
 
 class Converter
 {
-    const ALGARISMS_MAP = [
+    const ALGORISMS_MAP = [
         1000 => 'M',
         500 => 'D',
         100 => 'C',
@@ -15,30 +15,30 @@ class Converter
     ];
 
     /**
-     * Convert given arabic number into roman equivalent
+     * Convert given arabic number into roman equivalent.
      *
      * @param int $arabic Number to be
      *
      * @return string Roman algorism
      */
-    public static function convert(int $arabic) : string
+    public static function convert(int $arabic): string
     {
-        if ($arabic === 0) {
+        if (0 === $arabic) {
             return '';
         }
 
-        $map = self::ALGARISMS_MAP;
+        $map = self::ALGORISMS_MAP;
 
         if (isset($map[$arabic])) {
             return $map[$arabic];
         }
 
-        return self::convertTrhoughDecomposition($arabic);
+        return self::convertThroughDecomposition($arabic);
     }
 
-    private static function convertTrhoughDecomposition(int $arabic)
+    private static function convertThroughDecomposition(int $arabic)
     {
-        $map = self::ALGARISMS_MAP;
+        $map = self::ALGORISMS_MAP;
         $roman = '';
         $romanLetters = array_values($map);
 
@@ -53,14 +53,14 @@ class Converter
                 $repeat = (int) $division;
                 $unitsToDecrease = $repeat * $mapArabic;
 
-                if ($repeat === 4) {
-                    $roman .= $mapRoman . $romanLetters[array_search($mapRoman, $romanLetters) - 1];
+                if (4 === $repeat) {
+                    $roman .= $mapRoman.$romanLetters[array_search($mapRoman, $romanLetters) - 1];
                     $arabic -= $unitsToDecrease;
 
                     continue;
                 }
 
-                for ($i = 0; $i < $repeat; $i++) {
+                for ($i = 0; $i < $repeat; ++$i) {
                     $roman .= $mapRoman;
                 }
 
