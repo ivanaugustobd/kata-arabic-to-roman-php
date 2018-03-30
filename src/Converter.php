@@ -36,6 +36,13 @@ class Converter
         return self::convertThroughDecomposition($arabic);
     }
 
+    /**
+     * Get roman equivalent by looking from the major to the minor divisible value possible.
+     *
+     * @param int $arabic Number to be
+     *
+     * @return string Roman algorism
+     */
     private static function convertThroughDecomposition(int $arabic)
     {
         $map = self::ALGORISMS_MAP;
