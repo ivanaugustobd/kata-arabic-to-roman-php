@@ -63,14 +63,9 @@ class Converter
             $repeat = (int) $division;
             $unitsToDecrease = $repeat * $currentArabic;
 
-            if ($repeat === 4) {
-                $roman .= $currentRoman.$romanLetters[$i + 1];
-                $arabic -= $unitsToDecrease;
-
-                continue;
-            }
-
-            $roman .= self::repeatRomanLetter($currentRoman, $repeat);
+            $roman .= $repeat === 4
+                ? $currentRoman.$romanLetters[$i + 1]
+                : implode(array_fill(0, $repeat, $currentRoman));
 
             $arabic -= $unitsToDecrease;
         }
@@ -80,24 +75,5 @@ class Converter
         $roman = str_replace('DCD', 'CM', $roman);
 
         return $roman;
-    }
-
-    /**
-     * Repeat given letter n times.
-     *
-     * @param string $letter Letter to be repeated
-     * @param int    $times  Times to be repeated
-     *
-     * @return string Repeated letters string
-     */
-    private static function repeatRomanLetter($letter, $times)
-    {
-        $letters = '';
-
-        for ($i = 0; $i < $times; ++$i) {
-            $letters .= $letter;
-        }
-
-        return $letters;
     }
 }
