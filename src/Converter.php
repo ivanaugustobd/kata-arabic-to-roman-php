@@ -51,7 +51,7 @@ class Converter
         $arabicNumbers = array_keys($map);
         $romanLetters = array_values($map);
 
-        for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; --$i) {
+        for ($i = $algorimsCount - 1; $i >= 0 && $arabic > 0; $i--) {
             $currentArabic = $arabicNumbers[$i];
             $currentRoman = $romanLetters[$i];
             $division = $arabic / $currentArabic;
@@ -63,7 +63,7 @@ class Converter
             $repeat = (int) $division;
             $unitsToDecrease = $repeat * $currentArabic;
 
-            if (4 === $repeat) {
+            if ($repeat === 4) {
                 $roman .= $currentRoman.$romanLetters[$i + 1];
                 $arabic -= $unitsToDecrease;
 
